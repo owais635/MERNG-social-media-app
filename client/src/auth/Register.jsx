@@ -68,13 +68,9 @@ export default function Register() {
           onChange={onChange}
         />
         &nbsp;
-        <input type="submit" disabled={loading} />
-        {loading && (
-          <div>
-            <br />
-            <p>Loading...</p>
-          </div>
-        )}
+        <button type="submit" disabled={loading}>
+          {loading ? "Loading..." : "Register"}
+        </button>
         {Object.keys(errors).length > 0 && (
           <div>
             <br />
