@@ -1,7 +1,9 @@
+import Posts from "./Posts/Posts";
+
 function App() {
   return (
     <div className="App">
-      <h1>hello world</h1>
+      <Posts />
     </div>
   );
 }
