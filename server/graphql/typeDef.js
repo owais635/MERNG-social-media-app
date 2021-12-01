@@ -29,6 +29,8 @@ const typeDefs = gql`
     id: ID!
     email: String!
     token: String!
+    username: String!
+    createdAt: String!
   }
 
   type Query {
