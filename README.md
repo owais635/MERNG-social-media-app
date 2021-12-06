@@ -3,7 +3,7 @@
 This project was created by following the [tutorial](https://youtu.be/n1mdAPFq2Os) and/or the [playlist](https://youtube.com/playlist?list=PLMhAeHCz8S3_pgb-j51QnCEhXNj5oyl8n).
 
 
-This project makes user of: `MongoDB`, `Express`, `React`, `Node`, `GraphQL`.
+This project makes use of: `MongoDB`, `Express`, `React`, `Node`, `GraphQL`.
 
 ## Screenshots
 
