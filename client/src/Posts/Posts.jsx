@@ -11,7 +11,7 @@ export default function Posts() {
   const { loading, data } = useQuery(FETCH_POSTS_QUERY);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <h2>Loading...</h2>;
   }
 
   if (!data || !data.getPosts) {
@@ -21,7 +21,7 @@ export default function Posts() {
   const posts = data.getPosts;
 
   if (posts.length === 0) {
-    return <h1>No Posts Found...</h1>;
+    return <h2>No Posts Found...</h2>;
   }
 
   return (

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./main.css";
 import { AuthContext } from "../context/auth";
@@ -15,10 +15,15 @@ export default function PostCard({
   commentCount,
   likes,
 }) {
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
+  const onClick = (e) => {
+    navigate(`/posts/${id}`);
+  };
+
   return (
-    <div className="post-card">
+    <div className="post-card" onClick={onClick}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h5>{username}</h5>&nbsp;
         <p style={{ fontSize: 12 }}>{new Date(createdAt).toLocaleString()}</p>

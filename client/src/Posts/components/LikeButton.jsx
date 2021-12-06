@@ -25,7 +25,8 @@ export default function LikeButton({ user, id, likeCount, likes }) {
     }
   }, [user, likes]);
 
-  const onLike = () => {
+  const onLike = (e) => {
+    e.stopPropagation();
     if (!user) {
       navigate("/login");
     }

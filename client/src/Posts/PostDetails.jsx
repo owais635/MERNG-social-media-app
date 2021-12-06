@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../context/auth";
 import LikeButton from "./components/LikeButton";
@@ -9,6 +9,8 @@ import DeleteButton from "./components/DeleteButton";
 
 export default function PostDetails(props) {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const { postId } = useParams();
 
   const { data } = useQuery(FETCH_POST_QUERY, {
@@ -18,7 +20,12 @@ export default function PostDetails(props) {
     },
   });
 
-  if (!data || !data.getPost) return <h2>Loading...</h2>;
+  const onDelete = () => {
+    navigate("/"); // navigate to home
+  };
+
+  if (!data || !data.getPost)
+    return <h2 style={{ textAlign: "center" }}>Loading...</h2>;
 
   const {
     body,
@@ -45,7 +52,9 @@ export default function PostDetails(props) {
             {new Date(createdAt).toLocaleString()}
           </p>
         </div>
-        {user && user.username === username && <DeleteButton id={postId} />}
+        {user && user.username === username && (
+          <DeleteButton id={postId} onDelete={onDelete} />
+        )}
       </div>
 
       <p style={{ margin: "24px 0px", fontSize: 28 }}>{body}</p>
