@@ -28,12 +28,11 @@ export default function Posts() {
     <div style={{ margin: 8 }}>
       {authContext.user ? <PostForm /> : <h4>Please login to make a post</h4>}
 
-      <h2 style={{ marginTop: 8 }}>Recent Posts</h2>
+      <h2 style={{ margin: "12px 0px 8px 0px" }}>Recent Posts</h2>
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "auto auto auto",
-          padding: "4px",
           gridGap: "16px",
         }}
       >
