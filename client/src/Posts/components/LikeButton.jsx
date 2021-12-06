@@ -12,7 +12,6 @@ export default function LikeButton({ user, id, likeCount, likes }) {
       console.log(result);
     },
     onError(err) {
-      debugger;
       console.log(err);
     },
     variables: { postId: id },

@@ -27,7 +27,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route exact path="/" element={<Posts />} />
-          <Route exact path="/posts/:id" element={<PostDetails />} />
+          <Route exact path="/posts/:postId" element={<PostDetails />} />
           {/* only allow access to these pages when not logged in */}
           <Route element={<AuthRoute />}>
             <Route exact path="/login" element={<Login />} />
