@@ -6,6 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 import LikeButton from "./components/LikeButton";
 import DeleteButton from "./components/DeleteButton";
+import Comment from "./components/Comment";
 
 export default function PostDetails(props) {
   const { user } = useContext(AuthContext);
@@ -59,20 +60,17 @@ export default function PostDetails(props) {
 
       <p style={{ margin: "24px 0px", fontSize: 28 }}>{body}</p>
 
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <div>
-          <LikeButton
-            user={user}
-            id={postId}
-            likes={likes}
-            likeCount={likeCount}
-          />
-        </div>
+      <LikeButton user={user} id={postId} likes={likes} likeCount={likeCount} />
+
+      <div style={{ margin: "16px 0px" }}>
+        <p>
+          {commentCount}&nbsp;{commentCount === 1 ? +" Comment" : "Comments"}
+        </p>
+        {commentCount > 0 ? (
+          comments.map((comment) => <Comment key={comment.id} {...comment} />)
+        ) : (
+          <p>No Comments Found.</p>
+        )}
       </div>
     </div>
   );
