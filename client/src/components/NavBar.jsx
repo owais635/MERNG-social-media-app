@@ -8,7 +8,9 @@ export default function NavBar() {
     <div
       style={{ display: "flex", justifyContent: "space-between", padding: 8 }}
     >
-      {authContext.user && <h1 style={{color: '#16A085'}}>{authContext.user.username}</h1>}
+      {authContext.user && (
+        <h1 style={{ color: "#16A085" }}>{authContext.user.username}</h1>
+      )}
 
       <nav
         style={{
@@ -22,8 +24,12 @@ export default function NavBar() {
         {authContext.user && (
           <button onClick={authContext.logout}>Logout</button>
         )}
-        {!authContext.user && <a href="/login/">Login</a>}
-        {/* <a href="/register/">Register</a> */}
+        {!authContext.user && (
+          <>
+            <a href="/login/">Login</a>
+            <a href="/register/">Register</a>
+          </>
+        )}
       </nav>
     </div>
   );
