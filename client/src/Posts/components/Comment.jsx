@@ -15,7 +15,9 @@ export default function Comment({ id, postId, username, createdAt, body }) {
           <p style={{ fontSize: 12 }}>{new Date(createdAt).toLocaleString()}</p>
         </div>
 
-        <DeleteButton postId={postId} commentId={id} />
+        {username === user.username && (
+          <DeleteButton postId={postId} commentId={id} />
+        )}
       </div>
 
       <p style={{ marginTop: 8 }}>{body}</p>

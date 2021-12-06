@@ -7,11 +7,11 @@ import { AuthContext } from "../context/auth";
 import LikeButton from "./components/LikeButton";
 import DeleteButton from "./components/DeleteButton";
 import Comment from "./components/Comment";
+import CommentForm from "./CommentForm";
 
 export default function PostDetails(props) {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const { postId } = useParams();
 
   const { data } = useQuery(FETCH_POST_QUERY, {
@@ -21,9 +21,7 @@ export default function PostDetails(props) {
     },
   });
 
-  const onDelete = () => {
-    navigate("/"); // navigate to home
-  };
+  const onDelete = () => navigate("/"); // navigate to home
 
   if (!data || !data.getPost)
     return <h2 style={{ textAlign: "center" }}>Loading...</h2>;
@@ -64,8 +62,10 @@ export default function PostDetails(props) {
 
       <div style={{ margin: "16px 0px" }}>
         <p>
-          {commentCount}&nbsp;{commentCount === 1 ? +" Comment" : "Comments"}
+          {commentCount}&nbsp;{commentCount === 1 ? "Comment" : "Comments"}
         </p>
+
+        <CommentForm postId={postId} />
 
         {comments.map((comment) => (
           <Comment key={comment.id} postId={postId} {...comment} />
