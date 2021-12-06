@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 
+import { AuthContext } from "../context/auth";
+
 export default function Login() {
+  const authContext = useContext(AuthContext);
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
 
@@ -14,9 +17,15 @@ export default function Login() {
 
   const [addUser, { loading }] = useMutation(LOGIN_USER, {
     update(proxy, result) {
+      const {
+        data: { login: userData },
+      } = result;
+
+      authContext.login(userData);
       navigate("/");
     },
     onError(err) {
+      console.log("err", err);
       setErrors(err.graphQLErrors[0].extensions.errors);
     },
     variables: values,
