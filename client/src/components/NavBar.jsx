@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/auth";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   const authContext = useContext(AuthContext);
@@ -20,14 +21,15 @@ export default function NavBar() {
           justifyContent: "space-evenly",
         }}
       >
-        <a href="/">Posts</a>
+        <Link to="/">Posts</Link>
+
         {authContext.user && (
           <button onClick={authContext.logout}>Logout</button>
         )}
         {!authContext.user && (
           <>
-            <a href="/login/">Login</a>
-            <a href="/register/">Register</a>
+            <Link to="/login/">Login</Link>
+            <Link to="/register/">Register</Link>
           </>
         )}
       </nav>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./main.css";
 
 export default function PostCard({
@@ -22,9 +23,12 @@ export default function PostCard({
         <span>{likeCount}</span>&nbsp;<button>Like</button>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "end", marginTop: 4 }}>
-        <span>{commentCount}</span>&nbsp;<button>Comment</button>
-      </div>
+      <Link
+        style={{ display: "flex", justifyContent: "end", marginTop: 4 }}
+        to={`/posts/${id}`}
+      >
+        <span>{commentCount}</span>&nbsp;Comment
+      </Link>
     </div>
   );
 }

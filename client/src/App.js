@@ -9,6 +9,7 @@ import {
 
 import AuthProvider, { AuthContext } from "./context/auth";
 import Posts from "./Posts/Posts";
+import PostDetails from "./Posts/PostDetails";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import NavBar from "./components/NavBar";
@@ -26,6 +27,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route exact path="/" element={<Posts />} />
+          <Route exact path="/posts/:id" element={<PostDetails />} />
           {/* only allow access to these pages when not logged in */}
           <Route element={<AuthRoute />}>
             <Route exact path="/login" element={<Login />} />
