@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
-import gql from "graphql-tag";
 
+import { FETCH_POSTS_QUERY } from "./queries";
 import { AuthContext } from "../context/auth";
 import PostCard from "./PostCard";
 import PostForm from "./PostForm";
@@ -44,25 +44,3 @@ export default function Posts() {
     </div>
   );
 }
-
-const FETCH_POSTS_QUERY = gql`
-  {
-    getPosts {
-      id
-      body
-      createdAt
-      username
-      likeCount
-      commentCount
-      likes {
-        username
-      }
-      comments {
-        id
-        createdAt
-        body
-        username
-      }
-    }
-  }
-`;

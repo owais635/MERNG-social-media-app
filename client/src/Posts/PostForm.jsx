@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
 
 import "./main.css";
+import { FETCH_POSTS_QUERY } from "./queries";
 import Errors from "../components/Errors";
 
 export default function PostForm() {
@@ -13,6 +14,13 @@ export default function PostForm() {
     update(proxy, result) {
       setBody(""); // clear body
       console.log("res", result);
+
+      // add post to cached query
+      const data = proxy.readQuery({ query: FETCH_POSTS_QUERY });
+      proxy.writeQuery({
+        query: FETCH_POSTS_QUERY,
+        data: { ...data, getPosts: [result.data.createPost, ...data.getPosts] },
+      });
     },
     onError(err) {
       console.log(err);
