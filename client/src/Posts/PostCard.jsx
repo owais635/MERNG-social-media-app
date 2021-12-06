@@ -40,7 +40,7 @@ export default function PostCard({
         }}
       >
         {user && user.username === username && (
-          <DeleteButton className="delete-post-btn" id={id} />
+          <DeleteButton className="delete-post-btn" postId={id} />
         )}
 
         <div>

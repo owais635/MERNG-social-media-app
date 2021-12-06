@@ -54,7 +54,7 @@ export default function PostDetails(props) {
           </p>
         </div>
         {user && user.username === username && (
-          <DeleteButton id={postId} onDelete={onDelete} />
+          <DeleteButton postId={postId} onDelete={onDelete} />
         )}
       </div>
 
@@ -66,11 +66,10 @@ export default function PostDetails(props) {
         <p>
           {commentCount}&nbsp;{commentCount === 1 ? +" Comment" : "Comments"}
         </p>
-        {commentCount > 0 ? (
-          comments.map((comment) => <Comment key={comment.id} {...comment} />)
-        ) : (
-          <p>No Comments Found.</p>
-        )}
+
+        {comments.map((comment) => (
+          <Comment key={comment.id} postId={postId} {...comment} />
+        ))}
       </div>
     </div>
   );
