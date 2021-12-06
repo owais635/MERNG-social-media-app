@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 
+import { AuthContext } from "../context/auth";
 import PostCard from "./PostCard";
+import PostForm from "./PostForm";
 
 export default function Posts() {
+  const authContext = useContext(AuthContext);
   const { loading, data } = useQuery(FETCH_POSTS_QUERY);
 
   if (loading) {
@@ -23,7 +26,9 @@ export default function Posts() {
 
   return (
     <div style={{ margin: 8 }}>
-      <h2>Recent Posts</h2>
+      {authContext.user ? <PostForm /> : <h4>Please login to make a post</h4>}
+
+      <h2 style={{ marginTop: 8 }}>Recent Posts</h2>
       <div
         style={{
           display: "grid",

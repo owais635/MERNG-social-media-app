@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../context/auth";
+import Errors from "../components/Errors";
 
 export default function Register() {
   const authContext = useContext(AuthContext);
@@ -80,17 +81,7 @@ export default function Register() {
         <button type="submit" disabled={loading}>
           {loading ? "Loading..." : "Register"}
         </button>
-        {Object.keys(errors).length > 0 && (
-          <div>
-            <br />
-            Errors:
-            <ul>
-              {Object.values(errors).map((err) => (
-                <li key={err}>{err}</li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <Errors errors={errors} />
       </form>
     </div>
   );
