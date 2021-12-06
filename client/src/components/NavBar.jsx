@@ -18,6 +18,7 @@ export default function NavBar() {
           flex: 1,
           margin: 8,
           display: "flex",
+          alignItems: "center",
           justifyContent: "space-evenly",
         }}
       >

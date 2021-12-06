@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+
 import "./main.css";
+import { AuthContext } from "../context/auth";
+import LikeButton from "./components/LikeButton";
 
 export default function PostCard({
   id,
@@ -9,7 +12,10 @@ export default function PostCard({
   username,
   likeCount,
   commentCount,
+  likes,
 }) {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="post-card">
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -19,16 +25,28 @@ export default function PostCard({
 
       <p style={{ margin: "8px 0px" }}>{body}</p>
 
-      <div style={{ display: "flex", justifyContent: "end" }}>
-        <span>{likeCount}</span>&nbsp;<button>Like</button>
-      </div>
-
-      <Link
-        style={{ display: "flex", justifyContent: "end", marginTop: 4 }}
-        to={`/posts/${id}`}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent:
+            user && user.username === username ? "space-between" : "end",
+        }}
       >
-        <span>{commentCount}</span>&nbsp;Comment
-      </Link>
+        {user && user.username === username && (
+          <button className="delete-post-btn">Delete</button>
+        )}
+
+        <div>
+          <LikeButton user={user} id={id} likes={likes} likeCount={likeCount} />
+          <Link
+            style={{ marginTop: 4, textDecoration: "none" }}
+            to={`/posts/${id}`}
+          >
+            <span>{commentCount}</span>&nbsp;Comment
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
