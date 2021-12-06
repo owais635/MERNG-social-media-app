@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./main.css";
 import { AuthContext } from "../context/auth";
 import LikeButton from "./components/LikeButton";
+import DeleteButton from "./components/DeleteButton";
 
 export default function PostCard({
   id,
@@ -34,7 +35,7 @@ export default function PostCard({
         }}
       >
         {user && user.username === username && (
-          <button className="delete-post-btn">Delete</button>
+          <DeleteButton className="delete-post-btn" id={id} />
         )}
 
         <div>

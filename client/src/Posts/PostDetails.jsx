@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import { useParams } from "react-router-dom";
+
 import { AuthContext } from "../context/auth";
 import LikeButton from "./components/LikeButton";
+import DeleteButton from "./components/DeleteButton";
 
 export default function PostDetails(props) {
   const { user } = useContext(AuthContext);
@@ -29,15 +31,21 @@ export default function PostDetails(props) {
   } = data.getPost;
 
   return (
-    <div style={{ margin: "16px auto", maxWidth: 500 }}>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h2>{username}</h2>
+    <div style={{ margin: "16px auto", maxWidth: 600, padding: "0px 4px" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <div>
+          <h2>{username}</h2>
           <p style={{ fontSize: 14, marginBottom: 8 }}>
             {new Date(createdAt).toLocaleString()}
           </p>
-          {user && user.username === username && <button>Delete Post</button>}
         </div>
+        {user && user.username === username && <DeleteButton id={postId} />}
       </div>
 
       <p style={{ margin: "24px 0px", fontSize: 28 }}>{body}</p>
