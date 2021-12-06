@@ -13,6 +13,7 @@ const httpLink = createHttpLink({
   uri: "http://localhost:5000",
 });
 
+// when the user logs in, use the token
 const authLink = setContext(() => {
   const token = localStorage.getItem("jwtToken");
   return {
